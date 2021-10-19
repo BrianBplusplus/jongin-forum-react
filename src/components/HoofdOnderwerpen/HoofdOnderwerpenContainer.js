@@ -17,7 +17,6 @@ export default function HoofdOnderwerpContainer() {
     setIsError(false);
     try {
       const response = await axios.get(`https://api.opvoedenin.nl/api/hoofdonderwerpen/`);
-      console.log(response);
       setContainerState({
         apiData: response.data,
       });

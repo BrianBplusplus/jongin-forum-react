@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function ErvaringenContainer() {
@@ -7,17 +8,25 @@ export default function ErvaringenContainer() {
   const [containerState, setContainerState] = useState({
     apiData: [],
     ErvaringenBody: "",
+    ErvaringenReacties: [],
     tempInfo: "",
   });
+
+  const { ervaringenId } = useParams();
 
   const fetchApi = useCallback(async () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      const response = await axios.get(`https://api.opvoedenin.nl/api/ervaringen/396757/`);
-      console.log(response.data);
+      const responseBody = await axios.get(
+        `https://api.opvoedenin.nl/api/ervaringen/${ervaringenId}`
+      );
+      const responseErvaringen = await axios.get(
+        `https://api.opvoedenin.nl/api/ervaringen/${ervaringenId}/reacties`
+      );
       setContainerState({
-        ErvaringenBody: response.data.Body,
+        ErvaringenBody: responseBody.data.Body,
+        ErvaringenReacties: responseErvaringen.data,
       });
     } catch (error) {
       setIsError(true);
@@ -32,9 +41,19 @@ export default function ErvaringenContainer() {
 
   return (
     <div>
-      ErvaringenContainer
+      Ervaringen
       {containerState.ErvaringenBody && <p>{containerState.ErvaringenBody}</p>}
-      <button onClick={() => console.log(containerState.ErvaringenBody)}>log</button>
+      Reacties
+      {containerState.ErvaringenReacties &&
+        containerState.ErvaringenReacties.map((reactie, index) => {
+          return (
+            <p key={index}>
+              {reactie.Body}
+              <br></br>
+            </p>
+          );
+        })}
+      <button onClick={() => console.log(containerState)}>log</button>
     </div>
   );
 }

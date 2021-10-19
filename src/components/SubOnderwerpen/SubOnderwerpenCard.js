@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function SubOnderwerpenCard(props) {
@@ -6,7 +7,9 @@ export default function SubOnderwerpenCard(props) {
     <div>
       <ul>
         {props.subHeader}
-        <li key={props.Id}>{props.titel}</li>
+        <li key={props.Id}>
+          <Link to={`/ervaringen/${props.ervaringenId}`}> {props.titel} </Link>
+        </li>
       </ul>
     </div>
   );

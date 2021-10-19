@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import SubOnderwerpenCard from "./SubOnderwerpenCard";
@@ -11,14 +12,15 @@ export default function SubOnderwerpenContainer() {
     tempInfo: "",
   });
 
+  const { subonderwerpenId } = useParams();
+
   const fetchApi = useCallback(async () => {
     setIsLoading(true);
     setIsError(false);
     try {
       const response = await axios.get(
-        `https://api.opvoedenin.nl/api/ervaringen/subonderwerpen/16`
+        `https://api.opvoedenin.nl/api/ervaringen/subonderwerpen/${subonderwerpenId}`
       );
-      console.log(response.data);
       setContainerState({
         apiData: response.data,
       });
@@ -42,6 +44,7 @@ export default function SubOnderwerpenContainer() {
             <SubOnderwerpenCard
               key={mappedApiData.ForumErvaring.Id}
               titel={mappedApiData.ForumErvaring.Titel}
+              ervaringenId={mappedApiData.ForumErvaring.Id}
             />
           );
         })}

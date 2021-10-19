@@ -12,13 +12,11 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Link to={"/"}>HoofdOnderwerpen</Link>
-          <Link to={"/subonderwerpen"}>Subonderwerpen</Link>
-          <Link to={"/ervaringen"}>Ervaringen</Link>
+          <Link to={"/"}>Home</Link>
           <Switch>
             <Route exact path="/" component={HoofdOnderwerpen} />
-            <Route exact path="/subonderwerpen" component={SubOnderwerpen} />
-            <Route exact path="/ervaringen" component={Ervaringen} />
+            <Route exact path="/subonderwerpen/:subonderwerpenId" component={SubOnderwerpen} />
+            <Route exact path="/ervaringen/:ervaringenId" component={Ervaringen} />
           </Switch>
         </header>
       </div>
