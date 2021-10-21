@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import qs from "qs";
+const qs = require("qs");
 
 import ErvaringenFormulier from "./ErvaringenFormulier";
 
@@ -20,21 +20,19 @@ export default function ErvaringenContainer() {
   });
 
   const { ervaringenId } = useParams();
-  const qs = require("qs");
 
   const ervaringenData = qs.stringify({
-    geslacht: "j",
-    leeftijd: "30",
-    body: "test bericht van Brian",
-    ervaringID: "396757",
+    geslacht: containerState.ReactieGeslacht,
+    leeftijd: containerState.ReactieLeeftijd,
+    body: containerState.ReactieReactie,
+    ervaringID: containerState.ErvaringenId,
   });
 
   const ervaringenConfig = {
     method: "post",
-    url: `https://api.opvoedenin.nl/api/ervaringen/${396757}/reacties/post`,
+    url: `https://api.opvoedenin.nl/api/ervaringen/${containerState.ErvaringenId}/reacties/post`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      "Access-Control-Allow-Origin": "true",
     },
     data: ervaringenData,
   };
@@ -51,6 +49,7 @@ export default function ErvaringenContainer() {
       );
       setContainerState({
         ErvaringenBody: responseBody.data.Body,
+        ErvaringenId: responseBody.data.Id,
         ErvaringenReacties: responseErvaringen.data,
       });
     } catch (error) {
@@ -61,12 +60,13 @@ export default function ErvaringenContainer() {
   });
 
   const postErvaring = () => {
-    try {
-      axios(ervaringenConfig);
-      console.log(ervaringenConfig);
-    } catch (error) {
-      console.error(error);
-    }
+    axios(ervaringenConfig)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -75,7 +75,11 @@ export default function ErvaringenContainer() {
 
   return (
     <div>
-      <ErvaringenFormulier></ErvaringenFormulier>
+      <ErvaringenFormulier
+        containerState={containerState}
+        setContainerState={setContainerState}
+        postErvaring={postErvaring}
+      ></ErvaringenFormulier>
       Ervaringen
       {containerState.ErvaringenBody && <p>{containerState.ErvaringenBody}</p>}
       Reacties
@@ -88,7 +92,7 @@ export default function ErvaringenContainer() {
             </p>
           );
         })}
-      <button onClick={() => console.log(containerState)}>log</button>
+      <button onClick={() => console.log(containerState)}>containerstate</button>
       <button onClick={postErvaring}>post test</button>
     </div>
   );
