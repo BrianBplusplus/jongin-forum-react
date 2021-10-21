@@ -8,9 +8,9 @@ export default function HoofdOnderwerpenCard(props) {
       <ol>{props.titel}</ol>
       {props.subtitels.map((subtitel) => {
         return (
-          <li key={subtitel.Id}>
+          <button key={subtitel.Id}>
             <Link to={`/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</Link>
-          </li>
+          </button>
         );
       })}
     </div>

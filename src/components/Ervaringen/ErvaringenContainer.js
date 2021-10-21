@@ -8,6 +8,8 @@ import ErvaringenFormulier from "./ErvaringenFormulier";
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [containerState, setContainerState] = useState({
     ErvaringenBody: "",
     ErvaringenReacties: [],
@@ -63,6 +65,7 @@ export default function ErvaringenContainer() {
     axios(ervaringenConfig)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        setIsSubmitted(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -87,11 +90,14 @@ export default function ErvaringenContainer() {
             </p>
           );
         })}
-      <ErvaringenFormulier
-        containerState={containerState}
-        setContainerState={setContainerState}
-        postErvaring={postErvaring}
-      ></ErvaringenFormulier>
+
+      {!isSubmitted && (
+        <ErvaringenFormulier
+          containerState={containerState}
+          setContainerState={setContainerState}
+          postErvaring={postErvaring}
+        ></ErvaringenFormulier>
+      )}
       <button onClick={() => console.log(containerState)}>containerstate</button>
     </div>
   );
