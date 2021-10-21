@@ -9,7 +9,6 @@ export default function SubOnderwerpenContainer() {
   const [isError, setIsError] = useState(false);
   const [containerState, setContainerState] = useState({
     apiData: [],
-    tempInfo: "",
   });
 
   const { subonderwerpenId } = useParams();

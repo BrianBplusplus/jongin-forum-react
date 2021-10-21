@@ -9,7 +9,6 @@ export default function HoofdOnderwerpContainer() {
   const [isError, setIsError] = useState(false);
   const [containerState, setContainerState] = useState({
     apiData: [],
-    tempInfo: "",
   });
 
   const fetchApi = useCallback(async () => {
