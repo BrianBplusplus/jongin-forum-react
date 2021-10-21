@@ -36,7 +36,7 @@ export default function SubOnderwerpenContainer() {
 
   return (
     <div>
-      SubOnderwerpen
+      <h2> SubOnderwerpen </h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (

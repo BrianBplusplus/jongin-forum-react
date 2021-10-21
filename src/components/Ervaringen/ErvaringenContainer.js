@@ -75,14 +75,9 @@ export default function ErvaringenContainer() {
 
   return (
     <div>
-      <ErvaringenFormulier
-        containerState={containerState}
-        setContainerState={setContainerState}
-        postErvaring={postErvaring}
-      ></ErvaringenFormulier>
-      Ervaringen
+      <h2> Ervaringen </h2>
       {containerState.ErvaringenBody && <p>{containerState.ErvaringenBody}</p>}
-      Reacties
+      <h2> Reacties </h2>
       {containerState.ErvaringenReacties &&
         containerState.ErvaringenReacties.map((reactie, index) => {
           return (
@@ -92,8 +87,12 @@ export default function ErvaringenContainer() {
             </p>
           );
         })}
+      <ErvaringenFormulier
+        containerState={containerState}
+        setContainerState={setContainerState}
+        postErvaring={postErvaring}
+      ></ErvaringenFormulier>
       <button onClick={() => console.log(containerState)}>containerstate</button>
-      <button onClick={postErvaring}>post test</button>
     </div>
   );
 }

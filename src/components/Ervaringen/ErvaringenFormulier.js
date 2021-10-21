@@ -13,6 +13,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
 
   return (
     <form onSubmit={handleSubmit} id="reactieformulier">
+      <h2>Plaats een reactie</h2>
       <label>Ik ben een</label>
       <br></br>
       <br></br>
@@ -76,6 +77,8 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
       ></input>
       <br></br>
       <br></br>
+      <label> Stuur mijn ervaring ook naar een hulpverlener.</label>
+      <br></br>
       <input
         type="text"
         id="emailhulpverlener"
@@ -83,6 +86,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         placeholder="Vul je antwoord emailadres voor de hulpverlener in"
         onChange={(event) => handleContainerState(event.target.value, "ReactieHulpverlener")}
       ></input>
+      <br></br>
       <br></br>
       <input type="submit" value="Verstuur" onSubmit={() => handleSubmit()}></input>
     </form>

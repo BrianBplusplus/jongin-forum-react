@@ -32,7 +32,7 @@ export default function HoofdOnderwerpContainer() {
 
   return (
     <div>
-      HoofdOnderwerpen
+      <h2>HoofdOnderwerpen</h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (

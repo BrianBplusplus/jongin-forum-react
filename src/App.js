@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "./App.css";
 
@@ -11,8 +10,11 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Link to={"/"}>Home</Link>
+          <button>
+            <Link to={"/"}>Home</Link>
+          </button>
+          <br></br>
+          <br></br>
           <Switch>
             <Route exact path="/" component={HoofdOnderwerpen} />
             <Route exact path="/subonderwerpen/:subonderwerpenId" component={SubOnderwerpen} />
