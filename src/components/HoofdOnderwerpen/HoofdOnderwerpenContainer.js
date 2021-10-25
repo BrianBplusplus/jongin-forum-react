@@ -31,7 +31,6 @@ export default function HoofdOnderwerpContainer() {
 
   return (
     <div>
-      <h2>HoofdOnderwerpen</h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (
@@ -39,6 +38,7 @@ export default function HoofdOnderwerpContainer() {
               key={mappedApiData.Id}
               titel={mappedApiData.Titel}
               subtitels={mappedApiData.SubOnderwerpen}
+              
             />
           );
         })}

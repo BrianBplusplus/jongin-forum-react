@@ -7,9 +7,9 @@ export default function SubOnderwerpenCard(props) {
     <div>
       <ul>
         {props.subHeader}
-        <button key={props.Id}>
+        <div key={props.Id}>
           <Link to={`/jongin-forum/ervaringen/${props.ervaringenId}`}> {props.titel} </Link>
-        </button>
+        </div>
       </ul>
     </div>
   );

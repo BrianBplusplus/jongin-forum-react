@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function HoofdOnderwerpenCard(props) {
   return (
-    <div>
-      <ol>{props.titel}</ol>
+    <div className={"ForumHoofdOnderwerpenContainer"}>
+      <ul className={"ForumHoofdOnderwerpenTitel"}>{props.titel}</ul>
       {props.subtitels.map((subtitel) => {
         return (
-          <button key={subtitel.Id}>
-            <Link to={`/jongin-forum/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</Link>
-          </button>
+          <div className={"ForumHoofdOnderwerpenLinks"} key={subtitel.Id}>
+            <NavLink className={"ForumHoofdOnderwerpenA"} to={`/jongin-forum/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</NavLink>
+          </div>
         );
       })}
     </div>
