@@ -10,14 +10,14 @@ function App() {
       <div className="App">
         <header className="App-header">
           <button>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/jongin-forum"}>Home</Link>
           </button>
           <br></br>
           <br></br>
           <Switch>
-            <Route exact path="/" component={HoofdOnderwerpen} />
-            <Route exact path="/subonderwerpen/:subonderwerpenId" component={SubOnderwerpen} />
-            <Route exact path="/ervaringen/:ervaringenId" component={Ervaringen} />
+            <Route exact path="/jongin-forum/" component={HoofdOnderwerpen} />
+            <Route exact path="/jongin-forum/subonderwerpen/:subonderwerpenId" component={SubOnderwerpen} />
+            <Route exact path="/jongin-forum/ervaringen/:ervaringenId" component={Ervaringen} />
           </Switch>
         </header>
       </div>

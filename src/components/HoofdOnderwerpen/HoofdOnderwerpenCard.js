@@ -9,7 +9,7 @@ export default function HoofdOnderwerpenCard(props) {
       {props.subtitels.map((subtitel) => {
         return (
           <button key={subtitel.Id}>
-            <Link to={`/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</Link>
+            <Link to={`/jongin-forum/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</Link>
           </button>
         );
       })}
