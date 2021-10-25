@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import "./App.css";
 
 import HoofdOnderwerpen from "./components/HoofdOnderwerpen/HoofdOnderwerpenContainer";
 import SubOnderwerpen from "./components/SubOnderwerpen/SubOnderwerpenContainer";
