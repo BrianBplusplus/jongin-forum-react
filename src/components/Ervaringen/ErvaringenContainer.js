@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const qs = require("qs");
-
 import ErvaringenFormulier from "./ErvaringenFormulier";
+
+
 
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +23,7 @@ export default function ErvaringenContainer() {
 
   const { ervaringenId } = useParams();
 
+  const qs = require("qs");
   const ervaringenData = qs.stringify({
     geslacht: containerState.ReactieGeslacht,
     leeftijd: containerState.ReactieLeeftijd,

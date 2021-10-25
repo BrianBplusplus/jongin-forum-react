@@ -7,7 +7,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
     return;
   };
 
-  const handleContainerState = (formInput, containerStateKey) => {
+  const handleContainerState = (containerStateKey, formInput) => {
     setContainerState({ ...containerState, [containerStateKey]: formInput });
   };
 
@@ -22,7 +22,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="jongen"
         name="geslacht"
         value="j"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieGeslacht")}
+        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">Jongen</label>
       <input
@@ -30,7 +30,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="meisje"
         name="geslacht"
         value="m"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieGeslacht")}
+        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">Meisje</label>
       <input
@@ -38,7 +38,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="x"
         name="geslacht"
         value="x"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieGeslacht")}
+        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">X</label>
       <br></br>
@@ -49,7 +49,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         type="number"
         id="leeftijd"
         name="leeftijd"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieLeeftijd")}
+        onChange={(event) => handleContainerState("ReactieLeeftijd", event.target.value)}
       ></input>
       <br></br>
       <br></br>
@@ -59,7 +59,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         name="reactie"
         form="reactieformulier"
         placeholder="Jouw reactie"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieReactie")}
+        onChange={(event) => handleContainerState("ReactieReactie", event.target.value)}
       ></textarea>
       <br></br>
 
@@ -73,7 +73,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailabonnement"
         name="emailabonnement"
         placeholder="vul je abonnement emailadres in"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieAbonnement")}
+        onChange={(event) => handleContainerState("ReactieAbonnement", event.target.value )}
       ></input>
       <br></br>
       <br></br>
@@ -84,7 +84,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailhulpverlener"
         name="emailhulpverlener"
         placeholder="Vul je antwoord emailadres voor de hulpverlener in"
-        onChange={(event) => handleContainerState(event.target.value, "ReactieHulpverlener")}
+        onChange={(event) => handleContainerState("ReactieHulpverlener", event.target.value)}
       ></input>
       <br></br>
       <br></br>

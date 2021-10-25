@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 import HoofdOnderwerpenCard from "./HoofdOnderwerpenCard";
 
