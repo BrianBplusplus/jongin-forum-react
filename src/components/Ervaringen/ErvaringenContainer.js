@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 import ErvaringenFormulier from "./ErvaringenFormulier";
-
-
 
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
@@ -99,7 +98,6 @@ export default function ErvaringenContainer() {
           postErvaring={postErvaring}
         ></ErvaringenFormulier>
       )}
-      <button onClick={() => console.log(containerState)}>containerstate</button>
     </div>
   );
 }

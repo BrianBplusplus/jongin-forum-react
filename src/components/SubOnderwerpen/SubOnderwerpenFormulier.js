@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 
-export default function ErvaringenFormulier({ containerState, setContainerState, postErvaring }) {
+export default function SubOnderwerpenFormulier({
+  containerState,
+  setContainerState,
+  postSubOnderwerp,
+}) {
   const handleSubmit = (event) => {
-    postErvaring();
+    postSubOnderwerp();
     event.preventDefault();
     return;
   };
@@ -12,7 +16,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
   };
 
   return (
-    <form onSubmit={handleSubmit} id="reactieformulier">
+    <form onSubmit={handleSubmit} id="subonderwerpenformulier">
       <h2>Plaats een reactie</h2>
       <label>Ik ben een</label>
       <br></br>
@@ -22,7 +26,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="jongen"
         name="geslacht"
         value="j"
-        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
+        onChange={(event) => handleContainerState("SubOnderwerpGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">Jongen</label>
       <input
@@ -30,7 +34,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="meisje"
         name="geslacht"
         value="m"
-        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
+        onChange={(event) => handleContainerState("SubOnderwerpGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">Meisje</label>
       <input
@@ -38,7 +42,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="x"
         name="geslacht"
         value="x"
-        onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
+        onChange={(event) => handleContainerState("SubOnderwerpGeslacht", event.target.value)}
       ></input>
       <label htmlFor="geslacht">X</label>
       <br></br>
@@ -49,17 +53,17 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         type="number"
         id="leeftijd"
         name="leeftijd"
-        onChange={(event) => handleContainerState("ReactieLeeftijd", event.target.value)}
+        onChange={(event) => handleContainerState("SubOnderwerpLeeftijd", event.target.value)}
       ></input>
       <br></br>
       <br></br>
       <textarea
         rows="4"
         cols="50"
-        name="reactie"
-        form="reactieformulier"
-        placeholder="Jouw reactie"
-        onChange={(event) => handleContainerState("ReactieReactie", event.target.value)}
+        name="subonderwerp"
+        form="subonderwerpformulier"
+        placeholder="Jouw verhaal of vraag"
+        onChange={(event) => handleContainerState("SubOnderwerpReactie", event.target.value)}
       ></textarea>
       <br></br>
 
@@ -73,7 +77,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailabonnement"
         name="emailabonnement"
         placeholder="vul je abonnement emailadres in"
-        onChange={(event) => handleContainerState("ReactieAbonnement", event.target.value )}
+        onChange={(event) => handleContainerState("SubOnderwerpAbonnement", event.target.value)}
       ></input>
       <br></br>
       <br></br>
@@ -84,7 +88,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailhulpverlener"
         name="emailhulpverlener"
         placeholder="Vul je antwoord emailadres voor de hulpverlener in"
-        onChange={(event) => handleContainerState("ReactieHulpverlener", event.target.value)}
+        onChange={(event) => handleContainerState("SubOnderwerpHulpverlener", event.target.value)}
       ></input>
       <br></br>
       <br></br>

@@ -9,7 +9,12 @@ export default function HoofdOnderwerpenCard(props) {
       {props.subtitels.map((subtitel) => {
         return (
           <div className={"ForumHoofdOnderwerpenLinks"} key={subtitel.Id}>
-            <NavLink className={"ForumHoofdOnderwerpenA"} to={`/jongin-forum/subonderwerpen/${subtitel.Id}`}>{subtitel.Titel}</NavLink>
+            <NavLink
+              className={"ForumHoofdOnderwerpenA"}
+              to={`/forum/subonderwerpen/${subtitel.Id}`}
+            >
+              {subtitel.Titel}
+            </NavLink>
           </div>
         );
       })}

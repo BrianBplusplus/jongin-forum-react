@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 
 export default function ErvaringenFormulier({ containerState, setContainerState, postErvaring }) {
   const handleSubmit = (event) => {
@@ -73,7 +73,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailabonnement"
         name="emailabonnement"
         placeholder="vul je abonnement emailadres in"
-        onChange={(event) => handleContainerState("ReactieAbonnement", event.target.value )}
+        onChange={(event) => handleContainerState("ReactieAbonnement", event.target.value)}
       ></input>
       <br></br>
       <br></br>

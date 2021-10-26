@@ -3,15 +3,43 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import SubOnderwerpenCard from "./SubOnderwerpenCard";
+import SubOnderwerpenFormulier from "./SubOnderwerpenFormulier";
 
 export default function SubOnderwerpenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [containerState, setContainerState] = useState({
     apiData: [],
+    SubOnderwerpId: "",
+    SubOnderwerpGeslacht: "",
+    SubOnderwerpLeeftijd: "",
+    SubOnderwerpTitel: "",
+    SubOnderwerpReactie: "",
+    SubOnderwerpAbonnement: "",
+    SubOnderwerpHulpVerlener: "",
   });
 
   const { subonderwerpenId } = useParams();
+
+  const qs = require("qs");
+  const subOnderwerpenData = qs.stringify({
+    geslacht: containerState.SubOnderwerpGeslacht,
+    leeftijd: containerState.SubOnderwerpLeeftijd,
+    body: containerState.SubOnderwerpReactie,
+    titel: containerState.SubOnderwerpTitel,
+    subonderwerpId: containerState.SubOnderwerpId,
+  });
+
+  const subOnderwerpenConfig = {
+    method: "post",
+    url: `https://api.opvoedenin.nl/api/ervaringen/`,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    data: subOnderwerpenData,
+  };
 
   const fetchApi = useCallback(async () => {
     setIsLoading(true);
@@ -30,13 +58,23 @@ export default function SubOnderwerpenContainer() {
     setIsLoading(false);
   });
 
+  const postSubOnderwerp = () => {
+    axios(subOnderwerpenConfig)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setIsSubmitted(true);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     fetchApi();
   }, []);
 
   return (
     <div>
-      <h2> SubOnderwerpen </h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (
@@ -47,6 +85,14 @@ export default function SubOnderwerpenContainer() {
             />
           );
         })}
+
+      {!isSubmitted && (
+        <SubOnderwerpenFormulier
+          containerState={containerState}
+          setContainerState={setContainerState}
+          postSubOnderwerp={postSubOnderwerp}
+        ></SubOnderwerpenFormulier>
+      )}
     </div>
   );
 }
