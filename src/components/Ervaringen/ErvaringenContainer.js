@@ -28,6 +28,8 @@ export default function ErvaringenContainer() {
     leeftijd: containerState.ReactieLeeftijd,
     body: containerState.ReactieReactie,
     ervaringID: containerState.ErvaringenId,
+    UserEmail: containerState.ReactieAbonnement,
+    SendToHelpEmail: containerState.ReactieHulpVerlener,
   });
 
   const ervaringenConfig = {

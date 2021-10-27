@@ -17,7 +17,9 @@ export default function SubOnderwerpenContainer() {
     SubOnderwerpLeeftijd: "",
     SubOnderwerpTitel: "",
     SubOnderwerpReactie: "",
+    SubOnderwerpOnderwerp: "",
     SubOnderwerpAbonnement: "",
+    SubOnderwerpCheckBox: true,
     SubOnderwerpHulpVerlener: "",
   });
 
@@ -29,7 +31,9 @@ export default function SubOnderwerpenContainer() {
     leeftijd: containerState.SubOnderwerpLeeftijd,
     body: containerState.SubOnderwerpReactie,
     titel: containerState.SubOnderwerpTitel,
-    subonderwerpId: containerState.SubOnderwerpId,
+    subonderwerpId: containerState.SubOnderwerpOnderwerp,
+    UserEmail: containerState.SubOnderwerpAbonnement,
+    sendtohelpemail: containerState.SubOnderwerpHulpVerlener,
   });
 
   const subOnderwerpenConfig = {
@@ -93,6 +97,7 @@ export default function SubOnderwerpenContainer() {
           postSubOnderwerp={postSubOnderwerp}
         ></SubOnderwerpenFormulier>
       )}
+      <button onClick={() => console.log(containerState)}>containerstate</button>
     </div>
   );
 }

@@ -55,7 +55,6 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
       <br></br>
       <textarea
         rows="4"
-        cols="50"
         name="reactie"
         form="reactieformulier"
         placeholder="Jouw reactie"
@@ -84,7 +83,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         id="emailhulpverlener"
         name="emailhulpverlener"
         placeholder="Vul je antwoord emailadres voor de hulpverlener in"
-        onChange={(event) => handleContainerState("ReactieHulpverlener", event.target.value)}
+        onChange={(event) => handleContainerState("ReactieHulpVerlener", event.target.value)}
       ></input>
       <br></br>
       <br></br>
