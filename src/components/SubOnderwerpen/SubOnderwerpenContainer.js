@@ -79,6 +79,7 @@ export default function SubOnderwerpenContainer() {
 
   return (
     <div>
+      <h2>Titel Reacties Weergaves Laatste Reacte</h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (
@@ -86,6 +87,9 @@ export default function SubOnderwerpenContainer() {
               key={mappedApiData.ForumErvaring.Id}
               titel={mappedApiData.ForumErvaring.Titel}
               ervaringenId={mappedApiData.ForumErvaring.Id}
+              aantalReacties={mappedApiData.AantalReacties}
+              weergaves={mappedApiData.ViewCount}
+              laatsteReactie={mappedApiData.LaatsteReactieString}
             />
           );
         })}
