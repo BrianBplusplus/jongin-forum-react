@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -45,7 +45,7 @@ export default function SubOnderwerpenContainer() {
     data: subOnderwerpenData,
   };
 
-  const fetchApi = useCallback(async () => {
+  const fetchApi = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
@@ -60,7 +60,7 @@ export default function SubOnderwerpenContainer() {
       console.error(error);
     }
     setIsLoading(false);
-  });
+  };
 
   const postSubOnderwerp = () => {
     axios(subOnderwerpenConfig)
@@ -74,12 +74,17 @@ export default function SubOnderwerpenContainer() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchApi();
-  }, []);
+  });
 
   return (
-    <div>
-      <h2>Titel Reacties Weergaves Laatste Reacte</h2>
+    <div className={"ForumSubOnderwerpenContainer"}>
+      <h2 className={"SubOnderwerpenTitel"}>
+        <span id={"SubOnderwerpenTitelInner"} className={"SubOnderwerpenTitelSpan"}>Titel</span> 
+        <span className={"SubOnderwerpenTitelSpan"}>Reacties</span> 
+        <span className={"SubOnderwerpenTitelSpan"}>Weergaves</span>
+      </h2>
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (

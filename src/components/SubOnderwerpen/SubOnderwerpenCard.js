@@ -3,22 +3,20 @@ import { Link } from "react-router-dom";
 
 export default function SubOnderwerpenCard(props) {
   return (
-    <div>
-      <ul>
+      <ul className={"SubOnderwerpenUl"}>
         {props.subHeader}
-        <div key={props.Id} style={{ display: "flex", justifyContent: "space-between" }}>
+        <li key={props.Id} style={{ display: "flex", justifyContent: "space-between" }}>
           <Link style={{ width: "33%" }} to={`/forum/ervaringen/${props.ervaringenId}`}>
             {props.titel}
           </Link>
-          <div style={{ width: "33%", textAlign: "right" }}>
-            Aantal reacties: {props.aantalReacties}
-          </div>
-          <div style={{ width: "33%", textAlign: "right" }}>Weergaves: {props.weergaves}</div>
+          <li style={{ width: "33%", textAlign: "center", listStyle: "none" }}>
+            {props.aantalReacties}
+          </li>
+          <li style={{ width: "33%", textAlign: "center", listStyle: "none" }}>{props.weergaves}</li>
           {/*
           TODO: Datum omzetten naar bijvoorbeeld: "Laatste Reactie 20 dagen geleden ipv een datum"
           <p>Laatste reactie: {props.laatsteReactie}</p>*/}
-        </div>
+        </li>
       </ul>
-    </div>
   );
 }

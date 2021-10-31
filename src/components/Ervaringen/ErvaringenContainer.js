@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -41,7 +41,7 @@ export default function ErvaringenContainer() {
     data: ervaringenData,
   };
 
-  const fetchApi = useCallback(async () => {
+  const fetchApi =  async () => {
     setIsLoading(true);
     setIsError(false);
     try {
@@ -61,7 +61,7 @@ export default function ErvaringenContainer() {
       console.error(error);
     }
     setIsLoading(false);
-  });
+  };
 
   const postErvaring = () => {
     axios(ervaringenConfig)
@@ -75,8 +75,9 @@ export default function ErvaringenContainer() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetchApi();
-  }, []);
+  });
 
   return (
     <div>
@@ -86,10 +87,7 @@ export default function ErvaringenContainer() {
       {containerState.ErvaringenReacties &&
         containerState.ErvaringenReacties.map((reactie, index) => {
           return (
-            <p key={index}>
-              {reactie.Body}
-              <br></br>
-            </p>
+            <div key={index} dangerouslySetInnerHTML={{__html: reactie.Body}} />
           );
         })}
 

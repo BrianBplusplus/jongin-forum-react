@@ -23,11 +23,12 @@ export default function HoofdOnderwerpContainer() {
       console.error(error);
     }
     setIsLoading(false);
-  });
+  },[]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchApi();
-  }, []);
+  }, [fetchApi]);
 
   return (
     <div>
