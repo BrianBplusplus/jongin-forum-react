@@ -41,7 +41,7 @@ export default function ErvaringenContainer() {
     data: ervaringenData,
   };
 
-  const fetchApi =  async () => {
+  const fetchApi = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
@@ -75,9 +75,9 @@ export default function ErvaringenContainer() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     fetchApi();
-  });
+  }, []);
 
   return (
     <div>
@@ -86,9 +86,7 @@ export default function ErvaringenContainer() {
       <h2> Reacties </h2>
       {containerState.ErvaringenReacties &&
         containerState.ErvaringenReacties.map((reactie, index) => {
-          return (
-            <div key={index} dangerouslySetInnerHTML={{__html: reactie.Body}} />
-          );
+          return <div key={index} dangerouslySetInnerHTML={{ __html: reactie.Body }} />;
         })}
 
       {!isSubmitted && (

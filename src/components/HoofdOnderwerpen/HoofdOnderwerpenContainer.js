@@ -23,7 +23,7 @@ export default function HoofdOnderwerpContainer() {
       console.error(error);
     }
     setIsLoading(false);
-  },[]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,16 +33,17 @@ export default function HoofdOnderwerpContainer() {
   return (
     <div>
       {containerState.apiData &&
-        containerState.apiData.map((mappedApiData) => {
-          return (
-            <HoofdOnderwerpenCard
-              key={mappedApiData.Id}
-              titel={mappedApiData.Titel}
-              subtitels={mappedApiData.SubOnderwerpen}
-              
-            />
-          );
-        })}
+        containerState.apiData
+          .filter((filteredApiData) => filteredApiData.Id !== 110)
+          .map((mappedApiData) => {
+            return (
+              <HoofdOnderwerpenCard
+                key={mappedApiData.Id}
+                titel={mappedApiData.Titel}
+                subtitels={mappedApiData.SubOnderwerpen}
+              />
+            );
+          })}
     </div>
   );
 }

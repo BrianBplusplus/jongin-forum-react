@@ -76,13 +76,15 @@ export default function SubOnderwerpenContainer() {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchApi();
-  });
+  }, []);
 
   return (
     <div className={"ForumSubOnderwerpenContainer"}>
       <h2 className={"SubOnderwerpenTitel"}>
-        <span id={"SubOnderwerpenTitelInner"} className={"SubOnderwerpenTitelSpan"}>Titel</span> 
-        <span className={"SubOnderwerpenTitelSpan"}>Reacties</span> 
+        <span id={"SubOnderwerpenTitelInner"} className={"SubOnderwerpenTitelSpan"}>
+          Titel
+        </span>
+        <span className={"SubOnderwerpenTitelSpan"}>Reacties</span>
         <span className={"SubOnderwerpenTitelSpan"}>Weergaves</span>
       </h2>
       {containerState.apiData &&
