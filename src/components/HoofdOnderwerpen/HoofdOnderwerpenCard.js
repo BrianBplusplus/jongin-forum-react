@@ -25,3 +25,5 @@ export default function HoofdOnderwerpenCard(props) {
 HoofdOnderwerpenCard.propTypes = {
   titel: PropTypes.string,
 };
+
+

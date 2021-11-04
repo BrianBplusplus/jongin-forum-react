@@ -7,9 +7,14 @@ import ErvaringenFormulier from "./ErvaringenFormulier";
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [formActive, setFormActive] = useState(false);
+  const [subjectClosed, setSubjectClosed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [containerState, setContainerState] = useState({
+    ErvaringenTitel: "",
+    ErvaringenGeslacht: "",
+    ErvaringenLeeftijd: "",
     ErvaringenBody: "",
     ErvaringenReacties: [],
     ErvaringenId: "",
@@ -51,11 +56,26 @@ export default function ErvaringenContainer() {
       const responseErvaringen = await axios.get(
         `https://api.opvoedenin.nl/api/ervaringen/${ervaringenId}/reacties`
       );
+
+      const geslachtVerbose =
+        (await responseBody.data.Geslacht) === "j"
+          ? "Jongen"
+          : responseBody.data.Geslacht === "m"
+          ? "Meisje"
+          : "X";
+
       setContainerState({
+        ErvaringenTitel: responseBody.data.Titel,
+        ErvaringenGeslacht: geslachtVerbose,
         ErvaringenBody: responseBody.data.Body,
+        ErvaringenLeeftijd: responseBody.data.Leeftijd,
         ErvaringenId: responseBody.data.Id,
         ErvaringenReacties: responseErvaringen.data,
       });
+
+      if (responseBody.data.IsClosed === true) {
+        setSubjectClosed(true);
+      }
     } catch (error) {
       setIsError(true);
       console.error(error);
@@ -80,22 +100,51 @@ export default function ErvaringenContainer() {
   }, []);
 
   return (
-    <div>
-      <h2> Ervaringen </h2>
-      {containerState.ErvaringenBody && <p>{containerState.ErvaringenBody}</p>}
-      <h2> Reacties </h2>
-      {containerState.ErvaringenReacties &&
-        containerState.ErvaringenReacties.map((reactie, index) => {
-          return <div key={index} dangerouslySetInnerHTML={{ __html: reactie.Body }} />;
-        })}
-
-      {!isSubmitted && (
+    <div className={"ErvaringenContainer"}>
+      {<button onClick={() => setFormActive(true)}>Plaats een reactie</button>}
+      {formActive && !isSubmitted && !subjectClosed && (
         <ErvaringenFormulier
+          style={{ transition: "linear 1s" }}
           containerState={containerState}
           setContainerState={setContainerState}
           postErvaring={postErvaring}
         ></ErvaringenFormulier>
       )}
+
+      <h2 className={"ErvaringenTitel"}>
+        {containerState.ErvaringenTitel} - Door{" "}
+        {containerState.ErvaringenGeslacht} van{" "}
+        {containerState.ErvaringenLeeftijd} Jaar
+      </h2>
+
+      {containerState.ErvaringenBody && (
+        <p
+          className={"ErvaringenBody"}
+          dangerouslySetInnerHTML={{ __html: containerState.ErvaringenBody }}
+        />
+      )}
+      <h2 className={"ErvaringenTitel"}> Reacties </h2>
+      {containerState.ErvaringenReacties &&
+        containerState.ErvaringenReacties.map((reactie, index) => {
+          return (
+            <div className={"ErvaringenReacties"}>
+              <div>
+                <strong>
+                  {reactie.Geslacht === "j"
+                    ? "Jongen"
+                    : reactie.Geslacht === "m"
+                    ? "Meisje"
+                    : "Anders"}{" "}
+                  {reactie.Leeftijd}
+                </strong>
+              </div>
+              <div
+                key={index}
+                dangerouslySetInnerHTML={{ __html: reactie.Body }}
+              />
+            </div>
+          );
+        })}
     </div>
   );
 }
