@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function ErvaringenFormulier({ containerState, setContainerState, postErvaring }) {
+  const [isHulpverlenerChecked, setIsHulpverlenerChecked] = useState(false);
 
   const handleSubmit = (event) => {
     postErvaring();
@@ -25,7 +26,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         value="j"
         onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
-      <label htmlFor="geslacht">Jongen</label>
+      <label htmlFor="geslacht"> Jongen </label>
       <input
         type="radio"
         id="meisje"
@@ -33,7 +34,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         value="m"
         onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
-      <label htmlFor="geslacht">Meisje</label>
+      <label htmlFor="geslacht"> Meisje </label>
       <input
         type="radio"
         id="x"
@@ -41,7 +42,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         value="x"
         onChange={(event) => handleContainerState("ReactieGeslacht", event.target.value)}
       ></input>
-      <label htmlFor="geslacht">X</label>
+      <label htmlFor="geslacht"> X </label>
       <br></br>
       <br></br>
       <label>Leeftijd</label>
@@ -72,23 +73,35 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
         type="text"
         id="emailabonnement"
         name="emailabonnement"
-        placeholder="vul je abonnement emailadres in"
+        placeholder="E-Mail"
         onChange={(event) => handleContainerState("ReactieAbonnement", event.target.value)}
       ></input>
       <br></br>
       <br></br>
+
+      {!isHulpverlenerChecked && (
+        <input type="checkbox" onChange={() => setIsHulpverlenerChecked(true)}></input>
+      )}
+
       <label> Stuur mijn ervaring ook naar een hulpverlener.</label>
       <br></br>
+      {isHulpverlenerChecked && (
+        <input
+          type="text"
+          id="emailhulpverlener"
+          name="emailhulpverlener"
+          placeholder="E-Mail"
+          onChange={(event) => handleContainerState("SubOnderwerpHulpVerlener", event.target.value)}
+        ></input>
+      )}
+      <br></br>
+      <br></br>
       <input
-        type="text"
-        id="emailhulpverlener"
-        name="emailhulpverlener"
-        placeholder="Vul je antwoord emailadres voor de hulpverlener in"
-        onChange={(event) => handleContainerState("ReactieHulpVerlener", event.target.value)}
+        className={"ForumFormButton"}
+        type="submit"
+        value="Verstuur"
+        onSubmit={() => handleSubmit()}
       ></input>
-      <br></br>
-      <br></br>
-      <input type="submit" value="Verstuur" onSubmit={() => handleSubmit()}></input>
     </form>
   );
 }

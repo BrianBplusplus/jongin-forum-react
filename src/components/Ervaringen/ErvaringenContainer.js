@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import ErvaringenFormulier from "./ErvaringenFormulier";
+import FormSubmitCompleted from "../FormSubmitCompleted";
 
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
@@ -101,19 +102,8 @@ export default function ErvaringenContainer() {
 
   return (
     <div className={"ErvaringenContainer"}>
-      {<button onClick={() => setFormActive(true)}>Plaats een reactie</button>}
-      {formActive && !isSubmitted && !subjectClosed && (
-        <ErvaringenFormulier
-          style={{ transition: "linear 1s" }}
-          containerState={containerState}
-          setContainerState={setContainerState}
-          postErvaring={postErvaring}
-        ></ErvaringenFormulier>
-      )}
-
       <h2 className={"ErvaringenTitel"}>
-        {containerState.ErvaringenTitel} - Door{" "}
-        {containerState.ErvaringenGeslacht} van{" "}
+        {containerState.ErvaringenTitel} - Door {containerState.ErvaringenGeslacht} van{" "}
         {containerState.ErvaringenLeeftijd} Jaar
       </h2>
 
@@ -138,13 +128,21 @@ export default function ErvaringenContainer() {
                   {reactie.Leeftijd}
                 </strong>
               </div>
-              <div
-                key={index}
-                dangerouslySetInnerHTML={{ __html: reactie.Body }}
-              />
+              <div key={index} dangerouslySetInnerHTML={{ __html: reactie.Body }} />
             </div>
           );
         })}
+
+      {isSubmitted && <FormSubmitCompleted />}
+
+      {!isSubmitted && (
+        <ErvaringenFormulier
+          style={{ transition: "linear 1s" }}
+          containerState={containerState}
+          setContainerState={setContainerState}
+          postErvaring={postErvaring}
+        ></ErvaringenFormulier>
+      )}
     </div>
   );
 }

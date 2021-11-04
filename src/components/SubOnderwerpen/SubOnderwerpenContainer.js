@@ -4,11 +4,13 @@ import axios from "axios";
 
 import SubOnderwerpenCard from "./SubOnderwerpenCard";
 import SubOnderwerpenFormulier from "./SubOnderwerpenFormulier";
+import FormSubmitCompleted from "../FormSubmitCompleted";
 
 export default function SubOnderwerpenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFormActive, setIsFormActive] = useState(false);
 
   const [containerState, setContainerState] = useState({
     apiData: [],
@@ -80,6 +82,19 @@ export default function SubOnderwerpenContainer() {
 
   return (
     <div className={"ForumSubOnderwerpenContainer"}>
+      <button className={"ForumFormButton"} onClick={() => setIsFormActive(true)}>
+        Plaats een vraag
+      </button>
+      {isFormActive && !isSubmitted && (
+        <SubOnderwerpenFormulier
+          containerState={containerState}
+          setContainerState={setContainerState}
+          postSubOnderwerp={postSubOnderwerp}
+        ></SubOnderwerpenFormulier>
+      )}
+
+      {isSubmitted && <FormSubmitCompleted />}
+
       <h2 className={"SubOnderwerpenTitel"}>
         <span id={"SubOnderwerpenTitelInner"} className={"SubOnderwerpenTitelSpan"}>
           Titel
@@ -87,6 +102,7 @@ export default function SubOnderwerpenContainer() {
         <span className={"SubOnderwerpenTitelSpan"}>Reacties</span>
         <span className={"SubOnderwerpenTitelSpan"}>Weergaves</span>
       </h2>
+
       {containerState.apiData &&
         containerState.apiData.map((mappedApiData) => {
           return (
@@ -100,15 +116,6 @@ export default function SubOnderwerpenContainer() {
             />
           );
         })}
-
-      {!isSubmitted && (
-        <SubOnderwerpenFormulier
-          containerState={containerState}
-          setContainerState={setContainerState}
-          postSubOnderwerp={postSubOnderwerp}
-        ></SubOnderwerpenFormulier>
-      )}
-      <button onClick={() => console.log(containerState)}>containerstate</button>
     </div>
   );
 }
