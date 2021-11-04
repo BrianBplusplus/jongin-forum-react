@@ -91,7 +91,7 @@ export default function ErvaringenFormulier({ containerState, setContainerState,
           id="emailhulpverlener"
           name="emailhulpverlener"
           placeholder="E-Mail"
-          onChange={(event) => handleContainerState("SubOnderwerpHulpVerlener", event.target.value)}
+          onChange={(event) => handleContainerState("ReactieHulpVerlener", event.target.value)}
         ></input>
       )}
       <br></br>
