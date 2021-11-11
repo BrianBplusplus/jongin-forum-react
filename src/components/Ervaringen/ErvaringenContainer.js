@@ -5,6 +5,8 @@ import axios from "axios";
 import ErvaringenFormulier from "./ErvaringenFormulier";
 import FormSubmitCompleted from "../FormSubmitCompleted";
 
+import { dateDiff } from "../Functions";
+
 export default function ErvaringenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,6 +21,7 @@ export default function ErvaringenContainer() {
     ErvaringenBody: "",
     ErvaringenReacties: [],
     ErvaringenId: "",
+    ErvaringenDatumPublicatie: "",
     ReactieGeslacht: "",
     ReactieLeeftijd: "",
     ReactieReactie: "",
@@ -72,6 +75,7 @@ export default function ErvaringenContainer() {
         ErvaringenLeeftijd: responseBody.data.Leeftijd,
         ErvaringenId: responseBody.data.Id,
         ErvaringenReacties: responseErvaringen.data,
+        ErvaringenDatumPublicatie: responseBody.data.DatumPublicatie,
       });
 
       if (responseBody.data.IsClosed === true) {
@@ -105,6 +109,10 @@ export default function ErvaringenContainer() {
       <h2 className={"ErvaringenTitel"}>
         {containerState.ErvaringenTitel} - Door {containerState.ErvaringenGeslacht} van{" "}
         {containerState.ErvaringenLeeftijd} Jaar
+        {/*containerState.ErvaringenDatumPublicatie &&
+          dateDiff(
+            containerState.ErvaringenDatumPublicatie.slice(0, 9).split("-").reverse().join("-")
+          )*/}
       </h2>
 
       {containerState.ErvaringenBody && (
@@ -127,6 +135,8 @@ export default function ErvaringenContainer() {
                     : "Anders"}{" "}
                   {reactie.Leeftijd}
                 </strong>
+                {", "}
+                {/*dateDiff(reactie.DatumPublicatie.slice(0, 9).split("-").reverse().join("-"))*/}
               </div>
               <div key={index} dangerouslySetInnerHTML={{ __html: reactie.Body }} />
             </div>

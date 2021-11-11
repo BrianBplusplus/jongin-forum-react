@@ -9,10 +9,7 @@ export default function HoofdOnderwerpenCard(props) {
       {props.subtitels.map((subtitel) => {
         return (
           <div className={"ForumHoofdOnderwerpenLinks"} key={subtitel.Id}>
-            <NavLink
-              className={"ForumHoofdOnderwerpenA"}
-              to={`/forum/subonderwerpen/${subtitel.Id}`}
-            >
+            <NavLink className={"ForumHoofdOnderwerpenA"} to={`/subonderwerpen/${subtitel.Id}`}>
               {subtitel.Titel}
             </NavLink>
           </div>
@@ -25,5 +22,3 @@ export default function HoofdOnderwerpenCard(props) {
 HoofdOnderwerpenCard.propTypes = {
   titel: PropTypes.string,
 };
-
-

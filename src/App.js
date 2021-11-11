@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./style.css";
 
@@ -8,21 +8,17 @@ import Ervaringen from "./components/Ervaringen/ErvaringenContainer";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter basename="/forum">
       <div className="App">
         <header className="App-header">
           <Switch>
-            <Route exact path="/forum/" component={HoofdOnderwerpen} />
-            <Route
-              exact
-              path="/forum/subonderwerpen/:subonderwerpenId"
-              component={SubOnderwerpen}
-            />
-            <Route exact path="/forum/ervaringen/:ervaringenId" component={Ervaringen} />
+            <Route exact path="/" component={HoofdOnderwerpen} />
+            <Route exact path="/subonderwerpen/:subonderwerpenId" component={SubOnderwerpen} />
+            <Route exact path="/ervaringen/:ervaringenId" component={Ervaringen} />
           </Switch>
         </header>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

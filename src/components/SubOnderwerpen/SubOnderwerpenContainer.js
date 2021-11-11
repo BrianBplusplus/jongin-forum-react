@@ -6,6 +6,8 @@ import SubOnderwerpenCard from "./SubOnderwerpenCard";
 import SubOnderwerpenFormulier from "./SubOnderwerpenFormulier";
 import FormSubmitCompleted from "../FormSubmitCompleted";
 
+import { dateDiff } from "../Functions";
+
 export default function SubOnderwerpenContainer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -101,6 +103,7 @@ export default function SubOnderwerpenContainer() {
         </span>
         <span className={"SubOnderwerpenTitelSpan"}>Reacties</span>
         <span className={"SubOnderwerpenTitelSpan"}>Weergaves</span>
+        <span className={"SubOnderwerpenTitelSpan"}>Laatste Reactie</span>
       </h2>
 
       {containerState.apiData &&
@@ -112,7 +115,9 @@ export default function SubOnderwerpenContainer() {
               ervaringenId={mappedApiData.ForumErvaring.Id}
               aantalReacties={mappedApiData.AantalReacties}
               weergaves={mappedApiData.ViewCount}
-              laatsteReactie={mappedApiData.LaatsteReactieString}
+              laatsteReactie={dateDiff(
+                mappedApiData.LaatsteReactieString.slice(0, 10).split("-").reverse().join("-")
+              )}
             />
           );
         })}
